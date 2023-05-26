@@ -18,5 +18,7 @@ use App\Http\Controllers\UserApiController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+///GET API testing
 Route::get('/people/{id?}', [UserApiController::class, 'showPeople']);
+///POST API testing
+Route::post('/add-people', [UserApiController::class, 'addPeople']);
