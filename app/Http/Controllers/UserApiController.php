@@ -80,4 +80,20 @@ class UserApiController extends Controller
             return response()->json(['message' => $message], 201);
         }
     }
+    public function updatePeopleDetail(Request $request, $id)
+    {
+        if ($request->ismethod('put'))
+        {
+            $data = $request->all();
+
+            $people = People::find($id);
+            $people->name = $data['name'];
+            $people->email = $data['email'];
+            $people->number = $data['number'];
+            $people->password = bcrypt($data['password']);
+            $people->save();
+            $message = 'Detail update successfully, Thank You.';
+            return response()->json(['message' => $message], 202);
+        }
+    }
 }

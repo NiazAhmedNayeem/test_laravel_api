@@ -24,3 +24,5 @@ Route::get('/people/{id?}', [UserApiController::class, 'showPeople']);
 Route::post('/add-people', [UserApiController::class, 'addPeople']);
 ///POST API multiple people add testing
 Route::post('/add-multiple-people', [UserApiController::class, 'addMultiplePeople']);
+///PUT API for update people detail
+Route::put('/update-people-detail/{id}', [UserApiController::class, 'updatePeopleDetail']);
