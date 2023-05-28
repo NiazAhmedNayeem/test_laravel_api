@@ -132,4 +132,14 @@ class UserApiController extends Controller
         $message = 'Delete multiple user successfully, Thank you.';
         return response()->json(['message' => $message], 200);
     }
+    public function deleteMultipleUserRecordWithJson(Request $request)
+    {
+        if ($request->isMethod('delete'))
+        {
+            $date = $request->all();
+            People::whereIn('id', $date['ids'])->delete();
+            $message = 'Delete multiple user record with json is successfully, Thank you.';
+            return response()->json(['message' => $message], 200);
+        }
+    }
 }
