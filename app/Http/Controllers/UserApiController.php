@@ -142,4 +142,31 @@ class UserApiController extends Controller
             return response()->json(['message' => $message], 200);
         }
     }
+    public function deleteUserRecordWithJwtAuthorization(Request $request)
+    {
+        $header = $request->header('Authorization');
+        if ($header=='')
+        {
+            $message = 'Authorization is required.';
+            return response()->json(['message' => $message], 422);
+        }
+        else
+        {
+            if ($header=='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6InRlc3QgYXBpIiwiaWF0IjoxNTE2MjM5MDIyfQ.6mSBEaFD6HGKczWr-9QKPz-z7fOpErSKOnm_fACK-Eo')
+            {
+                if ($request->isMethod('delete'))
+                {
+                    $date = $request->all();
+                    People::whereIn('id', $date['ids'])->delete();
+                    $message = 'Delete user record is successfully, Thank you.';
+                    return response()->json(['message' => $message], 200);
+                }
+            }
+            else
+            {
+                $message = 'Authorization dose not match.';
+                return response()->json(['message' => $message], 422);
+            }
+        }
+    }
 }

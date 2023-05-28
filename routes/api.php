@@ -36,3 +36,6 @@ Route::delete('/delete-user-record-with-json', [UserApiController::class, 'delet
 Route::delete('/delete-multiple-user-record/{ids}', [UserApiController::class, 'deleteMultipleUserRecord']);
 ///DELETE API for delete multiple user or people with json
 Route::delete('/delete-multiple-user-record-with-json', [UserApiController::class, 'deleteMultipleUserRecordWithJson']);
+
+///DELETE API for delete multiple user or people with JWT Authorization
+Route::delete('/delete-user-record-with-jwt-Authorization', [UserApiController::class, 'deleteUserRecordWithJwtAuthorization']);
