@@ -109,4 +109,10 @@ class UserApiController extends Controller
             return response()->json(['message' => $message], 202);
         }
     }
+    public function deleteUserRecord($id=null)
+    {
+        People::findOrFail($id)->delete();
+        $message = 'Delete user successfully, Thank you.';
+        return response()->json(['message' => $message], 200);
+    }
 }
