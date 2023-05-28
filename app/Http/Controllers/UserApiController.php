@@ -96,4 +96,17 @@ class UserApiController extends Controller
             return response()->json(['message' => $message], 202);
         }
     }
+    public function updateSingleRecord(Request $request, $id)
+    {
+        if ($request->ismethod('patch'))
+        {
+            $data = $request->all();
+
+            $people = People::find($id);
+            $people->name = $data['name'];
+            $people->save();
+            $message = 'Record update successfully, Thank You.';
+            return response()->json(['message' => $message], 202);
+        }
+    }
 }
